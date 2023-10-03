@@ -3,10 +3,6 @@ import MyContext from './myContext'
 
 
 function myState(props) {
-    // const state ={
-    //     name:"keshav",
-    //     rollno:21
-    // }
     const [mode,setmode]=useState('light')
     const toggleMode=() =>{
         if (mode==='light'){
@@ -18,13 +14,11 @@ function myState(props) {
             document.body.style.backgroundColor="white"
         } 
     } 
+    const [loading,setLoading]=useState(false);
   return (
-    // <MyContext.Provider value ={state} ></MyContext.Provider>
-    
-    <MyContext.Provider value ={{mode,toggleMode}} >
+    <MyContext.Provider value ={{mode,toggleMode,loading,setLoading}} >
         {props.children}
     </MyContext.Provider>
   )
 }
-
 export default myState
