@@ -12,6 +12,7 @@ function Navbar() {
   const { mode, toggleMode } = context;
 
   const user = JSON.parse(localStorage.getItem("user"));
+  // console.log(user);
 
   const logout = () => {
     localStorage.clear("user");
@@ -19,7 +20,7 @@ function Navbar() {
   };
 
   return (
-    <div className="bg-white sticky top-0 z-50  ">
+    <div className="bg-white sticky top-0 z-50">
       {/* mobile */}
 
       <Transition.Root show={open} as={Fragment}>
@@ -71,7 +72,7 @@ function Navbar() {
                   >
                     All Products
                   </Link>
-                  <div className="flow-root">
+                  {user ?<div className="flow-root">
                     <Link
                       to={"/order"}
                       style={{ color: mode === "dark" ? "white" : "" }}
@@ -79,19 +80,19 @@ function Navbar() {
                     >
                       Order
                     </Link>
-                  </div>
-
+                  </div>:""}
+                  {user?.user?.email==="keshavbalesara04@gmail.com" ?
                   <div className="flow-root">
-                    <Link
-                      to={"/dashboard"}
-                      className="-m-2 block p-2 font-medium text-gray-900"
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      admin
-                    </Link>
-                  </div>
+                  <Link
+                    to={"/dashboard"}
+                    className="-m-2 block p-2 font-medium text-gray-900"
+                    style={{ color: mode === "dark" ? "white" : "" }}
+                  >
+                    admin
+                  </Link>
+                  </div>:""}
 
-                  <div className="flow-root">
+                  {user ? <div className="flow-root">
                     <a
                       onClick={logout}
                       className="-m-2 block p-2 font-medium text-gray-900 cursor-pointer"
@@ -99,7 +100,8 @@ function Navbar() {
                     >
                       Logout
                     </a>
-                  </div>
+                  </div>:""}
+
                   <div className="flow-root">
                     <Link
                       to={"/"}
@@ -203,28 +205,30 @@ function Navbar() {
                   >
                     All Products
                   </Link>
-                  <Link
+                  {user ? <Link
                     to={"/order"}
                     className="text-sm font-medium text-gray-700 "
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Order
-                  </Link>
+                  </Link>:""}
+                  {user?.user?.email==="keshavbalesara04@gmail.com" ?
                   <Link
-                      to={"/dashboard"}
-                      className="text-sm font-medium text-gray-700 "
-                      style={{ color: mode === "dark" ? "white" : "" }}
-                    >
-                      Admin
-                  </Link>
+                  to={"/dashboard"}
+                  className="text-sm font-medium text-gray-700 "
+                  style={{ color: mode === "dark" ? "white" : "" }}
+                >
+                Admin
+                </Link>: ""}
 
-                  <a
+                {user ? <a
                     onClick={logout}
                     className="text-sm font-medium text-gray-700 cursor-pointer  "
                     style={{ color: mode === "dark" ? "white" : "" }}
                   >
                     Logout
-                  </a>
+                  </a>:""}
+
                 </div>
 
                 <div className="hidden lg:ml-8 lg:flex">
