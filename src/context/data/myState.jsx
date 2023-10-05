@@ -39,13 +39,18 @@ function myState(props) {
         if(products.title == null || products.price==null || products.imageUrl==null|| products.category==null || products.description==null){
             return toast.error('Please fill all the fields')
         }
-        const productRef =collection(fireDB,"products")
+        
         setLoading(true)
         try{
+            const productRef =collection(fireDB,"products")
             await addDoc(productRef,products)
             toast.success("Product Add Successfully")
+            setTimeout(()=>{
+                window.location.href='/dashboard'
+            },800);
+
             getProductData()
-            closeModal()
+            
             setLoading(false)
         }
         catch(error){
